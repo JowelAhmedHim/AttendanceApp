@@ -2,14 +2,25 @@ package com.example.attendance;
 
 public class StudentItem {
 
+    private long sid;
     private String roll;
     private String name;
     private String status;
 
-    public StudentItem(String roll, String name) {
+
+    public StudentItem(long sid,String roll, String name) {
+        this.sid = sid;
         this.roll = roll;
         this.name = name;
         this.status = "";
+    }
+
+    public long getSid() {
+        return sid;
+    }
+
+    public void setSid(long sid) {
+        this.sid = sid;
     }
 
     public String getRoll() {

@@ -1,6 +1,7 @@
 package com.example.attendance;
 
 import android.content.Context;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +54,7 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.MyClassViewH
         return classItems.size();
     }
 
-    class MyClassViewHolder extends RecyclerView.ViewHolder{
+    class MyClassViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener{
 
         private TextView className,subjectName;
 
@@ -64,6 +65,13 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.MyClassViewH
             subjectName = itemView.findViewById(R.id.row_subject_name);
 
             itemView.setOnClickListener(v -> onItemClickListener.onClick(getAdapterPosition()));
+            itemView.setOnCreateContextMenuListener(this);
+        }
+
+        @Override
+        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+            menu.add(getAdapterPosition(),0,0,"EDIT");
+            menu.add(getAdapterPosition(),1,0,"DELETE");
         }
     }
 }
