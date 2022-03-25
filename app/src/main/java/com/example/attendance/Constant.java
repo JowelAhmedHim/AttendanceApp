@@ -53,10 +53,12 @@ public class Constant {
             "CREATE TABLE "+ STATUS_TABLE_NAME + "( "+
                     STATUS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "+
                     S_ID + " INTEGER NOT NULL, "+
+                    C_ID + " INTEGER NOT NULL, "+
                     DATE_KEY + " DATE NOT NULL, "+
                     STATUS_KEY + " TEXT NOT NULL, "+
                     " UNIQUE ( "+S_ID + "," + DATE_KEY + " ),"+
-                    " FOREIGN KEY ( "+ S_ID + " ) REFERENCES "+ STUDENT_TABLE_NAME + "( "+S_ID+" )"+
+                    " FOREIGN KEY ( "+ S_ID + " ) REFERENCES "+ STUDENT_TABLE_NAME + "( "+S_ID+" ),"+
+                    " FOREIGN KEY ( "+ C_ID + " ) REFERENCES "+ CLASS_TABLE_NAME + "( "+C_ID+" )"+
                     ");";
     public static final String DROP_STATUS_TABLE = "DROP TABLE IF EXISTS "+STATUS_TABLE_NAME;
     public static final String SELECT_STATUS_TABLE = "SELECT * FROM "+STATUS_TABLE_NAME;

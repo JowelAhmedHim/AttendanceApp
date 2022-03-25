@@ -7,6 +7,10 @@
     <item
         android:id="@+id/show_calendar"
         android:title="Change Date"/>
+    <item
+        android:id="@+id/show_attendance_sheet"
+        android:title="Attendance Sheet"/>
+
 
 
 </menu>

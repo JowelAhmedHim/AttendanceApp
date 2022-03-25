@@ -101,4 +101,41 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
 
+    long addStatus(long sid,long cid,String date,String status){
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Constant.S_ID,sid);
+        contentValues.put(Constant.C_ID,cid);
+        contentValues.put(Constant.DATE_KEY,date);
+        contentValues.put(Constant.STATUS_KEY,status);
+        return database.insert(Constant.STATUS_TABLE_NAME,null,contentValues);
+    }
+
+    long updateStatus(long sid,String date,String status){
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Constant.STATUS_KEY,status);
+        String whereClause = Constant.DATE_KEY +"='"+date + "' AND "+ Constant.S_ID + " = " +sid;
+        return database.update(Constant.STATUS_TABLE_NAME,contentValues,whereClause,null);
+    }
+
+    String getStatus(long sid,String date){
+        String status = null;
+        SQLiteDatabase database = this.getReadableDatabase();
+        String whereClause = Constant.DATE_KEY +"='"+date + "' AND "+ Constant.S_ID + " = " +sid;
+        Cursor cursor = database.query(Constant.STATUS_TABLE_NAME,null,whereClause,null,null,null,null);
+        if (cursor.moveToFirst()){
+            status = cursor.getString(cursor.getColumnIndexOrThrow(Constant.STATUS_KEY));
+        }
+        return status;
+
+    }
+
+    Cursor getDistinctMonths(long cid){
+        SQLiteDatabase database = this.getReadableDatabase();
+        return database.query(Constant.STATUS_TABLE_NAME,new String[]{Constant.DATE_KEY},Constant.C_ID + "="+cid,null,"substr("+Constant.DATE_KEY + " , 4.7)",null,null);
+
+    }
+
+
 }
