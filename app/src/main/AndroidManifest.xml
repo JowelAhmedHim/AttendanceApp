@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Attendance">
         <activity
+            android:name=".SheetActivity"
+            android:exported="false" />
+        <activity
             android:name=".SheetListActivity"
             android:exported="false" />
         <activity
@@ -21,7 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".StudentActivity"></activity>
+        <activity android:name=".StudentActivity" />
     </application>
 
 </manifest>

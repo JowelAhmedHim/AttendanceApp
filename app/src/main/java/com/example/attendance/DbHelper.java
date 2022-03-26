@@ -133,8 +133,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     Cursor getDistinctMonths(long cid){
         SQLiteDatabase database = this.getReadableDatabase();
-        return database.query(Constant.STATUS_TABLE_NAME,new String[]{Constant.DATE_KEY},Constant.C_ID + "="+cid,null,"substr("+Constant.DATE_KEY + " , 4.7)",null,null);
-
+        return database.query(Constant.STATUS_TABLE_NAME,new String[]{Constant.DATE_KEY},Constant.C_ID + "="+cid,null,"substr("+Constant.DATE_KEY + ",4,7)",null,null);
     }
 
 

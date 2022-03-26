@@ -150,8 +150,27 @@ public class StudentActivity extends AppCompatActivity {
     }
 
     private void openSheetList() {
+
+        long [] idArray = new long[studentItems.size()];
+        for (int i =0; i<idArray.length; i++){
+            idArray[i] = studentItems.get(i).getSid();
+        }
+
+        int[] rollArray = new int[studentItems.size()];
+        for (int i=0; i<rollArray.length; i++){
+            rollArray[i] = Integer.parseInt(studentItems.get(i).getRoll());
+        }
+
+        String[] nameArray = new String[studentItems.size()];
+        for (int i=0 ;i<nameArray.length ;i++){
+            nameArray[i] = studentItems.get(i).getName();
+        }
+
         Intent intent = new Intent(this,SheetListActivity.class);
         intent.putExtra("cid",cid);
+        intent.putExtra("idArray",idArray);
+        intent.putExtra("rollArray",rollArray);
+        intent.putExtra("nameArray",nameArray);
         startActivity(intent);
     }
 
